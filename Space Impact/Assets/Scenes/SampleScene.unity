@@ -443,3 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3830c183b2b0ec348882d60b730c9687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 8
+  horizontalInput: 0
+  verticalInput: 0
+  bulletPrefab: {fileID: 2934254057931526303, guid: 5848f92ad241f3744b9c504c6e4fc538, type: 3}

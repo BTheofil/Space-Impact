@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField]private float speed = 8.0f;
+    private float cornerBottomY = -3.0f;
+    private float cornerTopY = 5.6f;
+    private float cornerWidthX = 9.0f;
+
+    public GameObject bulletPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -14,18 +20,38 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //shoot 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(bulletPrefab, transform.position, bulletPrefab.transform.rotation);
+        }
     }
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.W))
+        //setup the coreners
+        if (transform.position.x > cornerWidthX) 
         {
-            transform.Translate(Vector3.up * Time.deltaTime * 8);        
+            transform.position = new Vector3(cornerWidthX, transform.position.y, 0);
         }
-        if (Input.GetKey(KeyCode.S))
+
+        if (transform.position.x < -cornerWidthX)
         {
-            transform.Translate(Vector3.down * Time.deltaTime * 8);
+            transform.position = new Vector3(-cornerWidthX, transform.position.y, 0);
         }
+
+        if (transform.position.y > cornerTopY)
+        {
+            transform.position = new Vector3(transform.position.x, cornerTopY, 0);
+        }
+
+        if (transform.position.y < cornerBottomY)
+        {
+            transform.position = new Vector3(transform.position.x, cornerBottomY, 0);
+        }
+
+        //move the player 
+        transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * Time.deltaTime * speed);
+        transform.Translate(Vector3.up * Input.GetAxis("Vertical") * Time.deltaTime * speed);
     }
 }
