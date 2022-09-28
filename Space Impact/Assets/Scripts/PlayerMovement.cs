@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]private float speed = 8.0f;
     private float cornerBottomY = -3.0f;
-    private float cornerTopY = 5.6f;
+    private float cornerTopY = 5.0f;
     private float cornerWidthX = 9.0f;
 
     public GameObject bulletPrefab;
